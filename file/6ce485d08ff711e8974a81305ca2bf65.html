@@ -1,0 +1,140 @@
+Remove HTML Comments with PHP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+<ul><li><a href="/">Home</a></li><li><a href="#main">Main Content</a></li></ul><div><div><a href="/">DWB<i></i></a><div><i></i><ul><li><a href="/">Home</a></li><li><a href="/page/1">Tutorials</a></li><li><a href="/tutorials/features">Features</a></li><li><a href="/tutorials/demos">Demos</a></li><li><a href="/topics">Topics</a></li><li><a href="/about">The Blog</a></li></ul><ul><li><div>Recent Tutorials</div><ul><li><a href="https://davidwalsh.name/realtime-crypto-rates">Realtime Cryptocurrency Rates API with coinlayer</a></li><li><a href="https://davidwalsh.name/script-style-show-episode-16-javascript-leds-kristina-durivage">Script &amp; Style Show: Episode 16: JavaScript &amp; LEDs with Kristina Durivage</a></li><li><a href="https://davidwalsh.name/8-digit-hex">8 Digit Hex Colors</a></li><li><a href="https://davidwalsh.name/script-style-show-episode-15-csp-scott-helme">Script &amp; Style Show: Episode 15: CSP with Scott Helme</a></li><li><a href="https://davidwalsh.name/search-git-dates">Search Git Commits Between Dates</a></li></ul></li><li><div>Recent Features</div><ul><li><a href="https://davidwalsh.name/retropie-graphical-guide">How to Create a RetroPie on Raspberry Pi - Graphical Guide</a></li><li><a href="https://davidwalsh.name/conquering-impostor-syndrome">Conquering Impostor Syndrome</a></li><li><a href="https://davidwalsh.name/being-a-dev-dad">Being a Dev Dad</a></li><li><a href="https://davidwalsh.name/promises">JavaScript Promise API</a></li><li><a href="https://davidwalsh.name/essential-javascript-functions">7 Essential JavaScript Functions</a></li></ul></li><li><div>Interactive Demos</div><ul><li><a href="https://davidwalsh.name/vertical-center-flexbox">Vertically Centering with Flexbox</a></li><li><a href="https://davidwalsh.name/flexbox-spacer">Creating Spacers with Flexbox</a></li><li><a href="https://davidwalsh.name/wavesurfer">Dynamic Waveform Visualizations with wavesurfer.js</a></li><li><a href="https://davidwalsh.name/codepen-animations">Chris Coyier: Some Amazing Work on CodePen III</a></li><li><a href="https://davidwalsh.name/video-preview">Create Short Preview from Video</a></li></ul></li><li><div>Popular Topics</div><ul><li><a href="/tutorials/html5">HTML5</a></li><li><a href="/tutorials/css/animations">CSS Animations</a></li><li><a href="/tutorials/firefoxos">Firefox OS</a></li><li><a href="/tutorials/jquery">jQuery</a></li><li><a href="/tutorials/mootools">MooTools</a></li><li><a href="/tutorials/php">PHP</a></li></ul><ul><li><a href="/tutorials/css">CSS3</a></li><li><a href="/tutorials/wordpress">WordPress</a></li><li><a href="/tutorials/mobile">Mobile</a></li><li><a href="/tutorials/seo">SEO</a></li><li><a href="/tutorials/javascript">JavaScript</a></li><li><a href="/tutorials/dojo">Dojo Toolkit</a></li></ul></li><li><div>David Walsh Blog</div><ul><li><a href="/about-david-walsh">About David Walsh</a></li><li><a href="/contact">Contact and Advertise</a></li><li><a href="/deals">Developer Deals</a></li><li><a href="/mozilla">Mozilla</a></li></ul></li></ul></div></div><div><ul><li><a href="/feed"><i></i></a></li><li><a href="//twitter.com/davidwalshblog"><i></i></a></li><li><a href="//facebook.com/davidwalshblog"><i></i></a></li><li><a href="https://plus.google.com/114538814489633467974?rel=author"><i></i></a></li><li><a href="//github.com/darkwing"><i></i></a></li><li><a href="//linkedin.com/in/davidjameswalsh"><i></i></a></li><li><a href="/?s=search"><i></i></a></li></ul><div>Search<i></i></div></div><div></div></div><div><div><strong>Popular:</strong><ul><li><a href="/promises">JavaScript Promises</a></li><li><a href="/fetch">fetch API</a></li><li><a href="/tutorials/react">React.js</a></li><li><a href="/cache">Cache API</a></li><li><a href="/es6-features">ES6 Features</a></li><li><a href="/tutorials/nodejs">Node.js</a></li><li><a href="/tutorials/javascript">JavaScript</a></li><li><a href="/tutorials/jquery">jQuery</a></li></ul></div></div><div><div><div>Remove HTML Comments with PHP</div></div></div>
+<div><div><div><a href="http://www.oreilly.com/pub/cpc/77171"><i></i>
+ <strong>Building Resilient Systems on AWS</strong>: Learn how to design and implement a resilient, highly available, fault-tolerant infrastructure on AWS.</a></div>Remove HTML Comments with PHP<div>
+By
+<a href="http://davidwalsh.name">David Walsh</a> on
+February 20, 2013
+ 
+<ul><li><a href="#comments"><i></i></a>21</li><li><a><i></i></a></li><li><a><i></i></a></li><li><a><i></i></a></li><li><a href="//www.reddit.com/submit?url=https://davidwalsh.name/remove-html-comments-php" target="_blank"><i></i></a></li><li><a href="#top"><i></i></a></li></ul></div><div></div><p>When it comes to sending content to users, I'm of the belief that less is more.  There's no reason for HTML comments to be sent down to the user -- they simply bloat the payload.  I remove unwanted HTML comments within my WordPress theme, so I thought I'd share the regex that does it:</p>
+
+<pre>
+// Remove unwanted HTML comments
+function remove_html_comments($content = '') {
+	return preg_replace('/&lt;!--(.|\s)*?--&gt;/', '', $content);
+}
+</pre>
+
+<p>That handy function, paired with output buffering, allows me to remove HTML comments from anywhere within the page.  Less load, less cruft for mobile users!</p><div><a href="https://tkjs.us/2qjWxOs"></a></div>
+<div><div>
+  
+    
+  <div></div>
+
+</div>
+</div><div><a href="/tutorials/features">Recent Features<i></i></a><ul><li><div>By <a href="http://davidwalsh.name">David Walsh</a>August 29, 2011</div><div><h3><a href="https://davidwalsh.name/namespace-mootools">Create Namespaced Classes with MooTools</a></h3><p>MooTools has always gotten a bit of grief for not inherently using and standardizing namespaced-based JavaScript classes like the Dojo Toolkit does.  Many developers create their classes as globals which is generally frowned up.  I mostly disagree with that stance, but each to their own.  In any event...</p></div></li><li><div>By <a href="http://davidwalsh.name">David Walsh</a>July 28, 2013</div><div><h3><a href="https://davidwalsh.name/css-cube">Create a CSS Cube</a></h3><p><a href="https://davidwalsh.name/demo/css-cube.php"></a>CSS cubes really showcase what CSS has become over the years, evolving from simple color and dimension directives to a language capable of creating deep, creative visuals.  Add animation and you've got something really neat.  Unfortunately each CSS cube tutorial I've read is a bit...</p></div></li></ul></div><div><a href="/tutorials/demos">Incredible Demos<i></i></a><ul><li><div>By <a href="http://davidwalsh.name">David Walsh</a>October 20, 2009</div><div><h3><a href="https://davidwalsh.name/milkchart">Dynamically Create Charts Using MooTools MilkChart and Google Analytics</a></h3><p>The prospect of creating graphics charts with JavaScript is exciting.  It's also the perfect use of JavaScript -- creating non-essential features with unobtrusive scripting.  I've created a mix of PHP (the <a href="https://davidwalsh.name/php-google-analytics">Analytics class</a>), HTML, and MooTools JavaScript that will connect to Google Analytics...</p></div></li><li><div>By <a href="http://davidwalsh.name">David Walsh</a>October 15, 2009</div><div><h3><a href="https://davidwalsh.name/ajax-spinner">Form Element AJAX Spinner Attachment Using MooTools</a></h3><p>Many times you'll see a form dynamically change available values based on the value of a form field.  For example, a &quot;State&quot; field will change based on which Country a user selects.  What annoys me about these forms is that they'll often do an...</p></div></li></ul></div><div>Discussion<ol><li><div><div>MaxArt</div><div><p>That would strip out all the comment-like sequences in Javascript code.<br />
+A very rare case indeed, and mixing HTML and Javascript is usually deprecated, but still…<br />
+A fully-fledged HTML-Javascript parser just to prevent this is hardly the effort here.</p>
+<p>Just remember that for backward compatibility for older browsers, script tags’ content are often enclosed in a comment. That would remove the entire script.</p>
+</div><div><a href="#comment-44578"><i></i></a></div></div></li><ul>
+<li><div><div>MaxArt</div><div><p>I’d like to add that I usually used the sequence [\s\S] instead of the (capturing) group (.|\s). I think it’s faster.</p>
+</div><div><a href="#comment-44579"><i></i></a></div></div></li>
+<li><div><div><a href="http://fredericiana.com">Fred</a></div><div><p>You can also do (?:.|\s) to make a group non-capturing. [\s\S] (whitespace or no whitespace) is nonsensical, you could just as well do . (any character).</p>
+<p>David: Why do you do .|\s? As far as I know, . captures all characters, including whitespace.</p>
+</div><div><a href="#comment-44580"><i></i></a></div></div></li>
+<li><div><div><a href="http://davidwalsh.name">David Walsh</a></div><div><p>I’ll check it out Fred!</p>
+</div><div><a href="#comment-44606"><i></i></a></div></div></li>
+</ul>
+
+<li><div><div><a href="http://canuckistani.ca/">Jeff Griffiths</a></div><div><p>When does this code run?</p>
+<p>The best use I could see for this is a build step, eg you take the template files and them through this on deploy. It feels like a waste of cpu cycles to run something like this per-request?</p>
+</div><div><a href="#comment-44582"><i></i></a></div></div></li>
+<li><div><div><a href="http://vigilantinc.com">Kristy</a></div><div><p>I like this concept but where/when would you call the function for normal php pages? thx</p>
+</div><div><a href="#comment-44589"><i></i></a></div></div></li>
+<li><div><div><a href="http://www.thedarkfortress.co.uk">I</a></div><div><p>This is great.</p>
+<p>For my use, I’d prefer this being done from an htaccess file – is this possible at all?</p>
+</div><div><a href="#comment-44639"><i></i></a></div></div></li>
+<li><div><div>(v)</div><div><p>what about <a href="http://stackoverflow.com/questions/5868968/removing-all-html-comments-except-internet-explorer-comments-using-regex-and-php">MSIE conditional comments</a>? ;-)</p>
+<p>my code is like:<br />
+<code><br />
+...<br />
+return preg_replace('/&lt;!--(?!\s*(?:\[if [^\]]+]|))(?:(?!--&gt;).)*--&gt;/s', '', $content);<br />
+…<br />
+</code></p>
+</div><div><a href="#comment-44644"><i></i></a></div></div></li><ul>
+<li><div><div><a href="http://davidwalsh.name">David Walsh</a></div><div><p>Awesome point, love this — I’ll check it out and if it works I’ll update my post!</p>
+</div><div><a href="#comment-44757"><i></i></a></div></div></li>
+<li><div><div><a href="http://davidwalsh.name">David Walsh</a></div><div><p>I tried this but it didn’t work :/  No comments were stripped at all.</p>
+</div><div><a href="#comment-45644"><i></i></a></div></div></li>
+<li><div><div><a href="http://www.naden.de">naden</a></div><div><p>Hi David, (V), the following mix of your snippets workes for me</p>
+<p>$data = preg_replace(‘//’, ”, $data);</p>
+</div><div><a href="#comment-46909"><i></i></a></div></div></li>
+</ul>
+
+<li><div><div><a href="http://rhacker.github.com">nXqd</a></div><div><p>It depends on our framework, it should have a pipeline to minimize the html before sending it into client :D<br />
+But thanks for your useful snippet :)</p>
+</div><div><a href="#comment-44646"><i></i></a></div></div></li>
+<li><div><div><a href="http://www.hitechrepairs.com">Nick Davidson</a></div><div><p>Wouldn’t this alter IE conditional comments?</p>
+</div><div><a href="#comment-45305"><i></i></a></div></div></li>
+<li><div><div><a href="http://www.naden.de">naden</a></div><div><p>Hi David, (V), the following mix of your snippets workes for me</p>
+<p>$data = preg_replace(‘//’, ”, $data);</p>
+<p>2nd try, I used pre but the code was removed …</p>
+</div><div><a href="#comment-46910"><i></i></a></div></div></li>
+<li><div><div><a href="http://www.naden.de">naden</a></div><div><p>Hi David, (V), the following mix of your snippets workes for me</p>
+<p><a href="http://pastebin.com/bfzWVFUi">http://pastebin.com/bfzWVFUi</a></p>
+<p>3rd try, I used pre but the code was removed … please delete my two previous comments</p>
+</div><div><a href="#comment-46911"><i></i></a></div></div></li>
+<li><div><div>Mike Smith</div><div><p>I added this code to my functions.php file, however, visitors can still post <strong>strong</strong> html tags and images on my blog :(</p>
+</div><div><a href="#comment-64728"><i></i></a></div></div></li>
+<li><div><div><a href="http://neediff.com">pavan</a></div><div><p>good concept and thanks for that</p>
+</div><div><a href="#comment-65469"><i></i></a></div></div></li>
+<li><div><div>spongeBob</div><div><p>Nice approach. But it would be more believable if I you also removed html comments on this page. :) But I liked the regex.</p>
+</div><div><a href="#comment-68119"><i></i></a></div></div></li>
+<li><div><div>Jack</div><div><p>Why even bother with putting in HTML comments at all?   Since commenting is supposed to be for future developers eyes who will be reading the actual code I just comment in php and then don’t have to worry about comments passed into html.</p>
+</div><div><a href="#comment-78421"><i></i></a></div></div></li>
+<li><div><div><a href="http://www.mdesain.com">jasa web desain</a></div><div><p>Full strip function</p>
+<pre>
+function html2txt($document){
+$search = array('@]*?&gt;.*?@si',  // Strip out javascript
+               '@&lt;[\/\!]*?[^]*?&gt;@si',            // Strip out HTML tags
+               '@]*?&gt;.*?@siU',    // Strip style tags properly
+               '@@'         // Strip multi-line comments including CDATA
+);
+$text = preg_replace($search, '', $document);
+return $text;
+} 
+</pre>
+</div><div><a href="#comment-79773"><i></i></a></div></div></li>
+<li><div><div>JoeB</div><div><p>This crashes horribly if the comment inside the tag is very large.</p>
+</div><div><a href="#comment-501023"><i></i></a></div></div></li>
+</ol></div><div><div><div>Name:Email:Website:<p>Wrap your code in <code>&lt;pre class=&quot;{language}&quot;&gt;&lt;/pre&gt;</code> tags, link to a GitHub gist, JSFiddle fiddle,  or CodePen pen to embed!</p> Continue this conversation via email<em>Get only replies to your comment, the best of the rest, as well as a daily recap of all comments on this post. No more than a few emails daily, which you can reply to/unsubscribe from directly from your inbox.</em>Use Code Editor</div></div></div></div></div><div><div><ul><li><a href="/feed"><i></i></a></li><li><a href="//twitter.com/davidwalshblog"><i></i></a></li><li><a href="//facebook.com/davidwalshblog"><i></i></a></li><li><a href="https://plus.google.com/114538814489633467974?rel=author"><i></i></a></li><li><a href="//github.com/darkwing"><i></i></a></li><li><a href="//linkedin.com/in/davidjameswalsh"><i></i></a></li></ul></div><p>© David Walsh 2007-2018.  All code <a href="http://opensource.org/licenses/MIT">MIT license</a>.Hosting by <a href="http://dwf.tw/mt">Media Temple</a>.</p></div>
+
+
+
+
+
+
