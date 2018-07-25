@@ -1,5 +1,5 @@
 {
-  "name": "futura",
+  "name": "scrape",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,8 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.1",
-    "axios": "^0.18.0",
     "chalk": "^2.4.1",
+    "request": "^2.87.0",
     "sanitize-html": "^1.18.2",
     "uuid": "^3.3.2",
     "yargs": "^12.0.1"

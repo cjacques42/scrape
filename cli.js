@@ -3,9 +3,8 @@
 const argv = require('yargs').argv
 const chalk = require('chalk');
 const async = require('async');
-const axios = require('axios');
+const request = require('request');
 const fs = require('fs');
-// const cheerio = require('cheerio');
 var sanitizeHtml = require('sanitize-html');
 const uuidv1 = require('uuid/v1');
 
@@ -50,20 +49,32 @@ if (urls.length === 0) {
 popAndSaveUrls();
 var errors = [];
 let q = async.queue(function(obj, callback) {
-  axios.get(obj)
-    .then(function (response) {
-      let dirtyHtml = response.data;
-      var dirty = 'some really tacky HTML';
-      var clean = sanitizeHtml(dirtyHtml);
-      console.log(chalk.green(`${obj} OK`));
-      save(clean);
-      popAndSaveUrls(obj, callback);
-    })
-    .catch(function (error) {
-      errors.push(obj);
-      console.log(chalk.red(`${obj} KO`));
-      popAndSaveUrls(obj, callback);
+  var options = {
+    uri: obj,
+    headers : {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36'
+    }
+  };
+  let body = [];
+  try {
+    request.get(options).on('response',function(response) {
+      response.on('data',function(chunk) {
+        body.push(chunk);
+      });
+      response.on('end', () => {
+        dirtyHtml = Buffer.concat(body).toString();
+        var dirty = 'some really tacky HTML';
+        var clean = sanitizeHtml(dirtyHtml);
+        console.log(chalk.green(`${obj} OK`));
+        save(clean);
+        popAndSaveUrls(obj, callback);
+      });
     });
+  } catch(error) {
+    errors.push(obj);
+    console.log(chalk.red(`${obj} KO`));
+    popAndSaveUrls(obj, callback);
+  }
 }, option.i);
 
 q.drain = function() {
@@ -73,7 +84,8 @@ q.drain = function() {
     fs.writeFileSync(fileError, txt);
     console.log(chalk.yellow('Check error.txt to see problematic url'));
   }
-  console.log(chalk.yellow('Finished'));
+  console.log();
+  console.log(chalk.yellow('Finished !'));
 };
 
 q.push(list);
@@ -86,6 +98,7 @@ function popAndSaveUrls(obj, callback) {
     }
   }
   if (urls.length === 0) {
+    console.log();
     fs.unlink('urls.txt', (err) => {
       console.log(chalk.green('urls.txt has been deleted'));
       if (callback) {
