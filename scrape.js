@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
+const Nightmare = require('nightmare')
 const argv = require('yargs').argv
 const chalk = require('chalk');
 const async = require('async');
-const request = require('request');
 const fs = require('fs');
 var sanitizeHtml = require('sanitize-html');
 const uuidv1 = require('uuid/v1');
@@ -46,35 +46,25 @@ if (urls.length === 0) {
   return;
 }
 
+console.log(chalk.green('Loading ..\n'));
 popAndSaveUrls();
 var errors = [];
 let q = async.queue(function(obj, callback) {
-  var options = {
-    uri: obj,
-    headers : {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36'
+  request(obj, function(err, res) {
+    if (err) {
+      errors.push(obj);
+      console.log(chalk.red(`${obj} KO`));
+      popAndSaveUrls(obj, callback);
+      return;
     }
-  };
-  let body = [];
-  try {
-    request.get(options).on('response',function(response) {
-      response.on('data',function(chunk) {
-        body.push(chunk);
-      });
-      response.on('end', () => {
-        dirtyHtml = Buffer.concat(body).toString();
-        var dirty = 'some really tacky HTML';
-        var clean = sanitizeHtml(dirtyHtml);
-        console.log(chalk.green(`${obj} OK`));
-        save(clean);
-        popAndSaveUrls(obj, callback);
-      });
-    });
-  } catch(error) {
-    errors.push(obj);
-    console.log(chalk.red(`${obj} KO`));
+    var clean = sanitizeHtml(res);
+    console.log(chalk.green(`${obj} OK`));
+    save(clean);
     popAndSaveUrls(obj, callback);
-  }
+  });
+  //   headers : {
+  //     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36'
+  //   }
 }, option.i);
 
 q.drain = function() {
@@ -85,6 +75,8 @@ q.drain = function() {
     console.log(chalk.yellow('Check error.txt to see problematic url'));
   }
   console.log();
+  console.log(chalk.yellow(`urls ${list.length - errors.length}/${list.length}`));
+  console.log(chalk.red(`errors ${errors.length}`));
   console.log(chalk.yellow('Finished !'));
 };
 
@@ -118,4 +110,21 @@ function save(html) {
   if ( !fs.existsSync( `${directory}` ) )
 			fs.mkdirSync( `${directory}` );
 	fs.writeFileSync( `${directory}/${randomFilename}.html`, html);
+}
+
+function request(url, callback) {
+  const nightmare = Nightmare({ show: false })
+  nightmare
+    .goto(url)
+    .wait(2000)
+    .evaluate(function() {
+      return document.body.innerHTML
+    })
+    .end()
+    .then(function(obj) {
+      callback(null, obj);
+    })
+    .catch(error => {
+      callback(error);
+    });
 }
