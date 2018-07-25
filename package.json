@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "scrape": "./cli.js"
+    "scrape": "./scrape.js"
   },
   "author": "",
   "license": "ISC",
