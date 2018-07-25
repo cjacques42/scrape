@@ -37,7 +37,7 @@ if (h) {
   console.log(chalk.yellow(`USAGE :\n`));
   console.log(chalk.yellow(`\tscrape https://google.com https://exemple.com http://localhost:3000`));
   console.log(chalk.yellow(`\tscrape -i 6 https://google.com\t// speed of 6 request per second, default: 5`));
-  console.log(chalk.yellow(`\tscrape -f file.txt`));
+  console.log(chalk.yellow(`\tscrape -f file.txt\t// One url per line`));
   return;
 }
 
