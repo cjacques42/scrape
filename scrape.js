@@ -27,29 +27,6 @@ let q = async.queue(function(obj, callback) {
       console.log(chalk.red(`${obj} KO`));
       return popAndSaveUrls(obj, callback);
     }
-
-    // const $ = cheerio.load(res);
-    // const arr = obj.split('/');
-    // const names = obj.split('/lbm');
-    // let name;
-    // if (names[1].startsWith('-')) {
-    //   name = names[1].substring(1).split('.')[0];
-    // }
-    // let city;
-    // arr.forEach((elmt, i) => {
-    //   if (elmt === 'laboratoires') {
-    //     city = arr[i + 1];
-    //   }
-    // })
-    // let selector = '#main-content > div > div:nth-child(2) > div > div.laboratory_mainBlock.col-sm-12 > div > div > ul > li';
-    // let services = [];
-    // let base = [obj, city, name];
-    // $(selector).each(function(i, elem) {
-    //   let service = $(this).text().trim();
-    //   services.push(service);
-    // });
-    // let final = base.concat(services)
-    // console.log(res);
     save(res);
     console.log(chalk.green(`${obj} OK`));
     popAndSaveUrls(obj, callback);
