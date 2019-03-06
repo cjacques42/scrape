@@ -1,3 +1,4 @@
 node_modules/
 file/
-error.txt
+*.txt
+*.csv
